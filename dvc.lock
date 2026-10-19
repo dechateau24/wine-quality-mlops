@@ -32,3 +32,45 @@ stages:
       hash: md5
       md5: b28b7dd2ba505ec68c41a8b4fe2bb767
       size: 12771
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 8b09bfddaee7bb9d0a296e58a2d96f11
+      size: 61185
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: 1d4ad011e100715d13ef3c2d4e3ffc18
+      size: 243896
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 8462edcdf421d66d41cbef8fb9aef93a
+      size: 3201
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: b28b7dd2ba505ec68c41a8b4fe2bb767
+      size: 12771
+    - path: src/train.py
+      hash: md5
+      md5: 4e4c14a2495f2bb02db6da88a28016a3
+      size: 3699
+    params:
+      params.yaml:
+        gradient_boosting:
+          n_estimators: 200
+          learning_rate: 0.05
+          max_depth: 4
+          random_state: 42
+        random_forest:
+          n_estimators: 200
+          max_depth: 12
+          min_samples_split: 2
+          random_state: 42
+        ridge:
+          alpha: 1.0
+    outs:
+    - path: metrics/scores.json
+      hash: md5
+      md5: 3cd63bde87383f4f0a91058618024e33
+      size: 127

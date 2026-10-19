@@ -12,3 +12,19 @@ stages:
       - data/processed/X_test.csv
       - data/processed/y_train.csv
       - data/processed/y_test.csv
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed/X_train.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_test.csv
+    params:
+      - ridge
+      - random_forest
+      - gradient_boosting
+    metrics:
+      - metrics/scores.json:
+          cache: false

@@ -1,3 +1,18 @@
 split:
-  test_size: 0.2        # 20 % des donnees pour le test
-  random_state: 42      # decoupage reproductible
+  test_size: 0.2
+  random_state: 42
+
+ridge:
+  alpha: 1.0
+
+random_forest:
+  n_estimators: 200
+  max_depth: 12
+  min_samples_split: 2
+  random_state: 42
+
+gradient_boosting:
+  n_estimators: 200
+  learning_rate: 0.05
+  max_depth: 4
+  random_state: 42
