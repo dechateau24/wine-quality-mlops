@@ -3,3 +3,4 @@ __pycache__/
 mlruns/
 *.pyc
 .env
+/models

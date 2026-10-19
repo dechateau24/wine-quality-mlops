@@ -25,6 +25,8 @@ stages:
       - ridge
       - random_forest
       - gradient_boosting
+    outs:
+      - models
     metrics:
       - metrics/scores.json:
           cache: false

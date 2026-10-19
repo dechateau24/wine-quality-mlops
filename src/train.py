@@ -1,6 +1,8 @@
 import json
 import os
 
+import joblib
+
 # Necessaire pour utiliser le dossier ./mlruns avec les versions recentes de MLflow
 os.environ.setdefault("MLFLOW_ALLOW_FILE_STORE", "true")
 
@@ -69,7 +71,7 @@ def train_one(name, params, X_train, X_test, y_train, y_test):
             skops_trusted_types=["sklearn.tree._tree.Tree"],
             input_example=X_train.iloc[:3],
         )
-    return metrics, info.model_uri
+    return metrics, info.model_uri, model
 
 
 def register_best_model(model_uri):
@@ -89,16 +91,22 @@ def main():
 
     results = {}
     for name in MODEL_NAMES:
-        metrics, uri = train_one(name, params[name], X_train, X_test, y_train, y_test)
-        results[name] = (metrics, uri)
+        metrics, uri, model = train_one(name, params[name], X_train, X_test, y_train, y_test)
+        results[name] = (metrics, uri, model)
         print(f"[train] {name:<18} RMSE={metrics['rmse']:.4f}  MAE={metrics['mae']:.4f}  R2={metrics['r2']:.4f}")
 
     # Le meilleur modele est celui dont la RMSE est la plus basse
     best_name = min(results, key=lambda n: results[n][0]["rmse"])
-    best_metrics, best_uri = results[best_name]
+    best_metrics, best_uri, best_model = results[best_name]
 
     version = register_best_model(best_uri)
     print(f"[train] Meilleur modele : {best_name} -> {MODEL_NAME} v{version} (alias @{MODEL_ALIAS})")
+
+    # Export du meilleur modele pour l'API (fichier autonome, sans dependance a mlruns)
+    os.makedirs("models", exist_ok=True)
+    joblib.dump(best_model, "models/model.joblib")
+    with open("models/features.json", "w", encoding="utf-8") as f:
+        json.dump(list(X_train.columns), f)
 
     os.makedirs("metrics", exist_ok=True)
     with open("metrics/scores.json", "w", encoding="utf-8") as f:

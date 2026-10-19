@@ -1,4 +1,5 @@
 import pandas as pd
+import joblib
 
 df = pd.read_csv("data/raw/wine_quality.csv")
 

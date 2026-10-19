@@ -9,8 +9,8 @@ stages:
       size: 385739
     - path: src/prepare.py
       hash: md5
-      md5: 377f9914e0eb703a2c5cab59a11e8161
-      size: 1100
+      md5: 9b159f5c947c956657ac017cf3cacaf4
+      size: 1114
     params:
       params.yaml:
         split.random_state: 42
@@ -53,8 +53,8 @@ stages:
       size: 12771
     - path: src/train.py
       hash: md5
-      md5: 4e4c14a2495f2bb02db6da88a28016a3
-      size: 3699
+      md5: 464acd67481ab8b870d5ce88b5bc3c5a
+      size: 4039
     params:
       params.yaml:
         gradient_boosting:
@@ -74,3 +74,8 @@ stages:
       hash: md5
       md5: 3cd63bde87383f4f0a91058618024e33
       size: 127
+    - path: models
+      hash: md5
+      md5: 4a248a4995ec5f36fdcd0fa7d4a886f7.dir
+      size: 14282284
+      nfiles: 2
