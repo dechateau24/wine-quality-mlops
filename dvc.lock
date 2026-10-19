@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: data/raw/wine_quality.csv
+      hash: md5
+      md5: 2f04a0a78796ed44c9b21ad2c125e93b
+      size: 385739
+    - path: src/prepare.py
+      hash: md5
+      md5: 377f9914e0eb703a2c5cab59a11e8161
+      size: 1100
+    params:
+      params.yaml:
+        split.random_state: 42
+        split.test_size: 0.2
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 8b09bfddaee7bb9d0a296e58a2d96f11
+      size: 61185
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: 1d4ad011e100715d13ef3c2d4e3ffc18
+      size: 243896
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 8462edcdf421d66d41cbef8fb9aef93a
+      size: 3201
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: b28b7dd2ba505ec68c41a8b4fe2bb767
+      size: 12771

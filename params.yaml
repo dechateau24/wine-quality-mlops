@@ -1,0 +1,3 @@
+split:
+  test_size: 0.2        # 20 % des donnees pour le test
+  random_state: 42      # decoupage reproductible
