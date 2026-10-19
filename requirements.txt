@@ -1,0 +1,6 @@
+pandas
+scikit-learn
+pyyaml
+dvc
+mlflow
+skops
