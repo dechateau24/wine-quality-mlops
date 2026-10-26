@@ -1,0 +1,4 @@
+[core]
+    remote = stockage
+['remote "stockage"']
+    url = ../../dvc_storage
