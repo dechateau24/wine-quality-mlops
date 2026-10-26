@@ -4,7 +4,10 @@ from pathlib import Path
 import joblib
 import pandas as pd
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
+
+from api.drift import generate_report_html
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,3 +45,8 @@ def predict(wine: Wine):
     X = pd.DataFrame([row], columns=FEATURES)
     prediction = float(model.predict(X)[0])
     return {"predicted_quality": round(prediction, 2)}
+
+
+@app.get("/drift-report", response_class=HTMLResponse)
+def drift_report():
+    return generate_report_html()

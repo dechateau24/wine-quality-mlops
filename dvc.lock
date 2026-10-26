@@ -53,8 +53,8 @@ stages:
       size: 12771
     - path: src/train.py
       hash: md5
-      md5: 464acd67481ab8b870d5ce88b5bc3c5a
-      size: 4039
+      md5: ca2ee546649d74ce67b48b1f7cce6aa1
+      size: 4162
     params:
       params.yaml:
         gradient_boosting:
@@ -76,6 +76,6 @@ stages:
       size: 127
     - path: models
       hash: md5
-      md5: 4a248a4995ec5f36fdcd0fa7d4a886f7.dir
-      size: 14282284
-      nfiles: 2
+      md5: 42eda90b18b7d801eba3cfa1544f73ee.dir
+      size: 14526180
+      nfiles: 3

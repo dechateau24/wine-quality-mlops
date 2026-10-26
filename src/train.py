@@ -107,6 +107,8 @@ def main():
     joblib.dump(best_model, "models/model.joblib")
     with open("models/features.json", "w", encoding="utf-8") as f:
         json.dump(list(X_train.columns), f)
+    # Donnees de reference pour la detection de derive (Evidently)
+    X_train.to_csv("models/reference.csv", index=False)
 
     os.makedirs("metrics", exist_ok=True)
     with open("metrics/scores.json", "w", encoding="utf-8") as f:

@@ -5,4 +5,4 @@ dvc
 mlflow
 skops
 fastapi
-uvicorn
+uvicornevidently==0.7.23

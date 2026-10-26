@@ -7,3 +7,4 @@ pydantic-settings==2.16.0
 pydantic_core==2.50.1
 scikit-learn==1.9.1
 uvicorn==0.54.0
+evidently==0.7.23
