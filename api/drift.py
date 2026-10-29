@@ -8,12 +8,23 @@ from evidently.presets import DataDriftPreset
 BASE_DIR = Path(__file__).resolve().parent.parent
 REFERENCE_PATH = BASE_DIR / "models" / "reference.csv"
 
+# Colonnes dont on simule la derive (7 sur 11, soit plus de 50 %)
+DRIFTED_COLUMNS = [
+    "alcohol",
+    "volatile.acidity",
+    "density",
+    "chlorides",
+    "residual.sugar",
+    "total.sulfur.dioxide",
+    "pH",
+]
+
 
 def build_current_data(reference):
-    """Simule des donnees de production : memes vins, mais mesures decalees."""
+    """Simule des donnees de production : memes vins, mais 7 mesures decalees."""
     current = reference.sample(n=500, random_state=0).copy()
-    current["alcohol"] = current["alcohol"] + 1.5
-    current["volatile.acidity"] = current["volatile.acidity"] * 1.4
+    for col in DRIFTED_COLUMNS:
+        current[col] = current[col] + reference[col].std()
     return current
 
 
